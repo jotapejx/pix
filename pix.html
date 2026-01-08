@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagamento Pix - João Pedro</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -18,7 +17,7 @@
 
         .card {
             background-color: #ffffff;
-            padding: 2rem;
+            padding: 2.5rem;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
@@ -28,32 +27,27 @@
 
         h1 {
             color: #333;
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
             font-weight: 600;
         }
 
-        /* Container onde o QR Code vai aparecer */
-        #qrcode {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            padding: 10px;
-        }
-
-        /* Ajuste da imagem gerada pelo script */
-        #qrcode img {
-            border: 1px solid #e0e0e0;
-            padding: 5px;
-            border-radius: 8px;
+        .label {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 8px;
+            text-align: left;
+            display: block;
         }
 
         .code-box {
             background-color: #f8f9fa;
             border: 1px solid #dee2e6;
-            border-radius: 6px;
-            padding: 10px;
-            margin-bottom: 1rem;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
         }
 
         .code-text {
@@ -73,40 +67,6 @@
             background-color: #32bcad;
             color: white;
             border: none;
-            padding: 12px 24px;
+            padding: 14px 24px;
             border-radius: 50px;
             font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            width: 100%;
-            font-weight: bold;
-        }
-
-        .btn-copy:hover {
-            background-color: #289a8e;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="card">
-        <h1>João Pedro da Cunha Bandeira</h1>
-
-        <div id="qrcode"></div>
-
-        <p style="font-size: 0.9rem; color: #666; margin-bottom: 5px;">Pix Copia e Cola:</p>
-        
-        <div class="code-box">
-            <input type="text" class="code-text" value="00020126580014BR.GOV.BCB.PIX01366880dbc4-d72d-4632-b8ef-a54fa8555c525204000053039865802BR5925JOAO PEDRO DA CUNHA BANDE6006MANAUS62070503***63044473" id="pixCode" readonly>
-        </div>
-
-        <button class="btn-copy" onclick="copyToClipboard()">
-            <span id="btnText">Copiar Código Pix</span>
-        </button>
-    </div>
-
-    <script>
-        // O código Pix exato fornecido
-        const pixString = "00020126580014BR.GOV.BCB.PIX01366880dbc4-d72d-4632-b8ef-a54fa8555c525204000053039865802BR5925JOAO PEDRO DA CUNHA BANDE6006MANAUS62070503***63044473";
-
-        // Gera o QR Code assim

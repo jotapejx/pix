@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagamento Pix - João Pedro</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        /* Estilos Gerais */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f0f2f5;
@@ -16,7 +16,6 @@
             margin: 0;
         }
 
-        /* Cartão Principal */
         .card {
             background-color: #ffffff;
             padding: 2rem;
@@ -27,7 +26,6 @@
             width: 90%;
         }
 
-        /* Nome */
         h1 {
             color: #333;
             font-size: 1.2rem;
@@ -35,22 +33,21 @@
             font-weight: 600;
         }
 
-        /* Imagem do QR Code */
-        .qr-container {
-            margin: 0 auto 1.5rem auto;
-            border: 1px solid #e0e0e0;
+        /* Container onde o QR Code vai aparecer */
+        #qrcode {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
             padding: 10px;
+        }
+
+        /* Ajuste da imagem gerada pelo script */
+        #qrcode img {
+            border: 1px solid #e0e0e0;
+            padding: 5px;
             border-radius: 8px;
-            display: inline-block;
         }
 
-        .qr-container img {
-            width: 200px;
-            height: 200px;
-            display: block;
-        }
-
-        /* Área do Código Pix */
         .code-box {
             background-color: #f8f9fa;
             border: 1px solid #dee2e6;
@@ -66,18 +63,14 @@
             font-family: monospace;
             color: #555;
             font-size: 0.9rem;
-            text-overflow: ellipsis; 
-            /* Oculta o resto do código visualmente para ficar bonito, 
-               mas copia tudo */
         }
 
         .code-text:focus {
             outline: none;
         }
 
-        /* Botão de Copiar */
         .btn-copy {
-            background-color: #32bcad; /* Cor verde do Pix */
+            background-color: #32bcad;
             color: white;
             border: none;
             padding: 12px 24px;
@@ -87,23 +80,10 @@
             transition: background-color 0.3s ease;
             width: 100%;
             font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
         }
 
         .btn-copy:hover {
             background-color: #289a8e;
-        }
-
-        .btn-copy:active {
-            transform: scale(0.98);
-        }
-
-        /* Ícone simples de copiar */
-        .icon {
-            font-size: 1.2rem;
         }
     </style>
 </head>
@@ -112,9 +92,7 @@
     <div class="card">
         <h1>João Pedro da Cunha Bandeira</h1>
 
-        <div class="qr-container">
-            <img src="https://quickchart.io/qr?text=00020126580014BR.GOV.BCB.PIX01366880dbc4-d72d-4632-b8ef-a54fa8555c525204000053039865802BR5925JOAO PEDRO DA CUNHA BANDE6006MANAUS62070503***63044473&size=300" alt="QR Code Pix">
-        </div>
+        <div id="qrcode"></div>
 
         <p style="font-size: 0.9rem; color: #666; margin-bottom: 5px;">Pix Copia e Cola:</p>
         
@@ -128,31 +106,7 @@
     </div>
 
     <script>
-        function copyToClipboard() {
-            // Pega o elemento do input
-            var copyText = document.getElementById("pixCode");
+        // O código Pix exato fornecido
+        const pixString = "00020126580014BR.GOV.BCB.PIX01366880dbc4-d72d-4632-b8ef-a54fa8555c525204000053039865802BR5925JOAO PEDRO DA CUNHA BANDE6006MANAUS62070503***63044473";
 
-            // Seleciona o texto
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); // Para dispositivos móveis
-
-            // Copia para a área de transferência
-            navigator.clipboard.writeText(copyText.value).then(function() {
-                // Altera o texto do botão para dar feedback visual
-                var btnText = document.getElementById("btnText");
-                var originalText = btnText.innerText;
-                
-                btnText.innerText = "Código Copiado! ✅";
-                
-                // Volta ao texto original após 2 segundos
-                setTimeout(function() {
-                    btnText.innerText = "Copiar Código Pix";
-                }, 2000);
-            }, function(err) {
-                alert("Erro ao copiar: " + err);
-            });
-        }
-    </script>
-
-</body>
-</html>
+        // Gera o QR Code assim
